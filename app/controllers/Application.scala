@@ -11,6 +11,7 @@ import play.api.Play.current
 import play.api.mvc.BodyParsers._
 import play.api.libs.json.Json
 import play.api.libs.json.Json._
+import com.ium.concerto.manager.RecommenderManager;
 
 object Application extends Controller{
 
@@ -47,6 +48,14 @@ object Application extends Controller{
         cats.insert(cat)
         Ok(toJson(cat))
     }.getOrElse(BadRequest("invalid json"))    
+  }
+
+  def view = Action {
+
+    val recommenderManager = new RecommenderManager
+    val msg = recommenderManager.getData
+
+    Ok(views.html.cat(msg))
   }
   
 }
