@@ -8,7 +8,8 @@ libraryDependencies ++= Seq(
   "mysql" % "mysql-connector-java" % "5.1.25",
   "org.webjars" %% "webjars-play" % "2.3.0-2",
   "com.typesafe.play" %% "play-slick" % "0.8.1",
-  "org.springframework" % "spring-beans" % "3.2.3.RELEASE"
+  "org.springframework" % "spring-beans" % "3.2.3.RELEASE",
+  "org.springframework" % "spring-context" % "3.2.3.RELEASE"
 )
 
 fork in Test := false
