@@ -1,5 +1,6 @@
 package controllers
 
+import manager.RecommenderManager2
 import models._
 import play.api._
 import play.api.db.slick._
@@ -11,7 +12,6 @@ import play.api.Play.current
 import play.api.mvc.BodyParsers._
 import play.api.libs.json.Json
 import play.api.libs.json.Json._
-import com.ium.concerto.manager.RecommenderManager;
 
 object Application extends Controller{
 
@@ -52,7 +52,7 @@ object Application extends Controller{
 
   def view = Action {
 
-    val recommenderManager = new RecommenderManager
+    val recommenderManager = new RecommenderManager2
     val msg = recommenderManager.getData
 
     Ok(views.html.cat(msg))

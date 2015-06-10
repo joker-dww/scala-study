@@ -19,3 +19,7 @@ GET         /assets/*file        controllers.Assets.at(path="/public", file)
 GET         /view                controllers.Application.view
 
 GET         /home                @controllers.ControllersSample.home()
+
+#GET         /getStatus           @com.ium.concerto.controller.RecommenderController.getStatus()
+
+GET         /getStatus           @controllers.ControllersSample.getStatus()
