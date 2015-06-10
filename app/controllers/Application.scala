@@ -50,12 +50,12 @@ object Application extends Controller{
     }.getOrElse(BadRequest("invalid json"))    
   }
 
-  def view = Action {
+  /*def view = Action {
 
     val recommenderManager = new RecommenderManager2
     val msg = recommenderManager.getData
 
     Ok(views.html.cat(msg))
-  }
+  }*/
   
 }

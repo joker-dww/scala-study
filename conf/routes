@@ -16,10 +16,10 @@ POST        /json/insert         controllers.Application.jsonInsert
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file        controllers.Assets.at(path="/public", file)
 
-GET         /view                controllers.Application.view
+GET         /view                controllers.First.view
 
 GET         /home                @controllers.ControllersSample.home()
 
-#GET         /getStatus           @com.ium.concerto.controller.RecommenderController.getStatus()
+GET         /getStatus           controllers.First.getStatus
 
-GET         /getStatus           @controllers.ControllersSample.getStatus()
+#GET         /getStatus           @controllers.ControllersSample.getStatus()

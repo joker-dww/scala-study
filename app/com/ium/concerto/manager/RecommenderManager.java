@@ -79,13 +79,13 @@ public class RecommenderManager {
 
 	// 담당자 번호
 	private String[] phones = {
-			"01057770095",  // 다람
-            "01097700680",  // 세바
-			"01054622792",  // 오즈
+            "01067058088",  // akki
+            "01045430186",  // nalssing
+            "07088730680",  // seba
+            "01083511840",  // joker
+			"01054622792",  // oz
             "01026380641", // Joe
-            "01054906080",  // 잠보
-            "01029311082",  // 추두익
-            "01044121214"  // 엘사
+            "01054906080",  // jambo
 		};
 	
 				
@@ -142,7 +142,7 @@ public class RecommenderManager {
 	@Async
 	public void startMatching(long reservedMatchConditionSeqId, String matchDate) {
 		Gender gender = Gender.FEMALE;
-		System.out.println("시작~~");
+
 		recommenderService.setMatchDate(matchDate);
 		String startDate = DateUtil.SDF_FULL_DB.format(Calendar.getInstance().getTime());
 		
@@ -152,8 +152,7 @@ public class RecommenderManager {
                 Integer matchElementCount = iumMatchReader.getMatchElementCount(iumMatchId) ;
                 if (matchElementCount != null && matchElementCount > 0) {
                     logger.debug(String.format("match_date: %s ium_match %d exists. match_element count: %d", matchDate, iumMatchId, matchElementCount)) ;
-					logger.debug( "[콘체] " + matchDate + " 매칭 이미 완료되어 매칭하지 않을래요~") ;
-                    //messageService.sendSms(phones, "[콘체] " + matchDate + " 매칭 이미 완료되어 매칭하지 않을래요~") ;
+                    messageService.sendSms(phones, "[콘체] " + matchDate + " 매칭 이미 완료되어 매칭하지 않을래요~") ;
 
                     return ;
                 }
@@ -161,7 +160,7 @@ public class RecommenderManager {
 
             recommenderStatusService.start();
 			logger.info("매칭 시작: " + matchDate) ;
-            //messageService.sendSms(phones, "[콘체] " + matchDate + " 매칭 시작합니다요 ~ ");
+            messageService.sendSms(phones, "[콘체] " + matchDate + " 매칭 시작합니다요 ~ ");
 
 			long startTime = System.nanoTime();
 			
@@ -379,18 +378,18 @@ public class RecommenderManager {
             logger.info("데이터 정합성 체크중");
 			
 			if(!iumPeopleService.checkData(matchDate, startDate)) {
-				//messageService.sendSms(phones, "[콘체]오류발생 (중복or매칭안됨) - " + resultString);
+				messageService.sendSms(phones, "[콘체]오류발생 (중복or매칭안됨) - " + resultString);
                 logger.error("[콘체]오류발생 (중복or매칭안됨) - " + resultString);
 
                 return;
 			}
 		
 			double duration = (System.nanoTime() - startTime)/1000000.0/1000/60;		
-			//messageService.sendSms(phones, "[콘체]매칭정상종료\n걸린시간: " + String.format("%.2f", duration) + "분 - " + resultString);
+			messageService.sendSms(phones, "[콘체]매칭정상종료\n걸린시간: " + String.format("%.2f", duration) + "분 - " + resultString);
             logger.info("[콘체]매칭정상종료\n걸린시간: " + String.format("%.2f", duration) + "분 - " + resultString);
 			logger.info( "TIME : " + duration + "(min)" );			
 		} catch(Exception e) {
-			//messageService.sendSms(phones, "[콘체]매칭 오류");
+			messageService.sendSms(phones, "[콘체]매칭 오류");
 			logger.debug(e.getMessage(), e);
 		}
         System.gc() ;
@@ -414,7 +413,7 @@ public class RecommenderManager {
 				Long partnerId = me.getCurrentPartners().get(0);
 				partner = females.get(partnerId);
 
-				if (1 < partner.getCurrentPartners().size()) {
+				if (partner != null && partner.getCurrentPartners() != null && 1 < partner.getCurrentPartners().size()) {
 					//System.out.println(me + " " + partner);
 					me.getCurrentPartners().remove(partnerId);
 					partner.getCurrentPartners().remove(me.getId());
