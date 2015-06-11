@@ -1,20 +1,21 @@
 package controllers
 
 import com.ium.concerto.manager.RecommenderManager
-import controllers.Application._
+import com.ium.concerto.model.RecommenderStatus
+import com.ium.concerto.service.recommender.RecommenderStatusService
 import manager.RecommenderManager2
+import org.springframework.context.annotation.{Bean, ComponentScan}
 import play.api.libs.json.Json._
 import play.api.mvc._
-import play.libs.Json
-import play.mvc.Result
 import org.springframework.beans.factory.annotation.Autowired
 
-/**
- * Created by joker on 2015. 6. 11..
- */
 object First extends Controller{
   //@Autowired
-  private var recommenderManager: RecommenderManager = new RecommenderManager
+  //private var recommenderManager: RecommenderManager = new RecommenderManager
+  @Autowired
+  private var recommenderStatusService: RecommenderStatusService = null
+
+  def instance() = this
 
   def view = Action {
 
@@ -25,7 +26,11 @@ object First extends Controller{
   }
 
   def getStatus = Action {
-    val result = Map("exampleField2" -> ("Hello world!" + recommenderManager.getRecommenderStatus) )
+    //var recommenderManager = new RecommenderManager
+
+    //var recommenderStatusService = new RecommenderStatusService
+    val result = Map("exampleField2" -> ("Hello world!" + recommenderStatusService.getRecommenderStatus()) )
+    //val result = Map("exampleField2" -> ("Hello world!" + recommenderManager.getRecommenderStatus) )
     Ok(toJson(result))
   }
 

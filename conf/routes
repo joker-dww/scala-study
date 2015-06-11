@@ -22,4 +22,6 @@ GET         /home                @controllers.ControllersSample.home()
 
 GET         /getStatus           controllers.First.getStatus
 
-#GET         /getStatus           @controllers.ControllersSample.getStatus()
+GET         /getS                @controllers.Second.getStatus
+
+GET         /getStat             @controllers.ControllersSample.getStatus()
