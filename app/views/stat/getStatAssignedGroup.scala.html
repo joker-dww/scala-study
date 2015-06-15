@@ -1,0 +1,60 @@
+@(dateString: String, statAssignedGroupList: java.util.List[Array[java.lang.Object]])
+
+<style type="text/css">
+.grid{
+display:block;
+overflow:hidden;
+float:left;
+}
+.box1{
+width:150px;
+height:700px;
+}
+</style>
+
+<br />
+<br />
+<form id="frmReservedmatchCondition" method="POST" action="/stat/getStatAssignedGroup">
+조회날짜: <input type="text" name="dateString" value="@dateString" />
+    <input type="submit" value=" 조회 " />
+</form>
+
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <table border="1">
+                        <tr>
+                            <th>Group Name</th>
+                            <th>Gender</th>
+                            <th>Count</th>
+                        </tr>
+                        @for( (statAssignedGroup,index) <- statAssignedGroupList.zipWithIndex) {
+
+                                <tr>
+                                    <td align="center">
+                                    @statAssignedGroup(0)
+                                    </td>
+                                    <td align="center">
+                                    @statAssignedGroup(1)
+                                    </td>
+                                    <td align="right">
+                                    @statAssignedGroup(2)
+                                    </td>
+                                </tr>
+                        }
+                    </table>
+                </td>
+                <td>
+                    <table border="1">
+                        <tr>
+                            <th>Group Name</th>
+                            <th>Gender</th>
+                            <th>Count</th>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>

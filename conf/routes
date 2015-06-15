@@ -21,3 +21,5 @@ GET         /home                @controllers.ControllersSample.home()
 GET         /getS                @controllers.Second.getStatus
 
 GET         /getStat             @controllers.ControllersSample.getStatus()
+
+GET         /stat/getStatAssignedGroup      @controllers.Second.getStatAssignedGroup(dateString: String)
