@@ -1,15 +1,15 @@
 @(dateString: String, statAssignedGroupList: java.util.List[Array[java.lang.Object]])
 
 <style type="text/css">
-.grid{
-display:block;
-overflow:hidden;
-float:left;
-}
-.box1{
-width:150px;
-height:700px;
-}
+    .grid{
+        display:block;
+        overflow:hidden;
+        float:left;
+    }
+        .box1{
+        width:150px;
+        height:700px;
+    }
 </style>
 
 <br />
@@ -29,8 +29,13 @@ height:700px;
                             <th>Gender</th>
                             <th>Count</th>
                         </tr>
-                        @for( (statAssignedGroup,index) <- statAssignedGroupList.zipWithIndex) {
-
+                        @if(statAssignedGroupList.isEmpty){
+                                <tr>
+                                    <td colspan="3" align="center">검색된 결과가 없습니다.</td>
+                                </tr>
+                        }else{
+                            @for(statAssignedGroup <- statAssignedGroupList) {
+                                @if(statAssignedGroup(1)=="FEMALE"){
                                 <tr>
                                     <td align="center">
                                     @statAssignedGroup(0)
@@ -42,6 +47,8 @@ height:700px;
                                     @statAssignedGroup(2)
                                     </td>
                                 </tr>
+                                }
+                            }
                         }
                     </table>
                 </td>

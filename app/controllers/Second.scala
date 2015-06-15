@@ -1,7 +1,5 @@
 package controllers
 
-import java.util
-
 import com.ium.concerto.manager.{PeopleGroupAssignManager, RecommenderManager}
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
@@ -11,7 +9,7 @@ import play.api.mvc.{Action, Controller}
 import java.text.SimpleDateFormat
 import java.util.Date
 
-import scala.collection.JavaConverters._
+import views.html.helper.form
 
 @Component
 class Second extends Controller{
@@ -29,17 +27,16 @@ class Second extends Controller{
 
   }
 
-  def getStatAssignedGroup(dateString: String) = Action {
-
+  def getStatAssignedGroup(dateString: Option[String]) = Action {
     val targetDate = dateString match {
-        case "" => new SimpleDateFormat("yyyyMMdd").format(new Date())
-        case _ => dateString
+        case None => new SimpleDateFormat("yyyyMMdd").format(new Date())
+        case _ => dateString.toString
     }
 
     var ls = statAssignedGroupList.getStatAssignedGroup(targetDate)
 
     Ok(views.html.stat.getStatAssignedGroup(
-      dateString,
+      targetDate,
       ls.asInstanceOf[java.util.List[Array[java.lang.Object]]]
       )
     )
