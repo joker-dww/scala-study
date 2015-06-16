@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
-<properties>
-	<entry key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</entry>
-	<entry key="hibernate.hbm2dll.auto">update</entry>
-</properties>
