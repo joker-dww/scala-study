@@ -59,6 +59,27 @@
                             <th>Gender</th>
                             <th>Count</th>
                         </tr>
+                        @if(statAssignedGroupList.isEmpty){
+                            <tr>
+                                <td colspan="3" align="center">검색된 결과가 없습니다.</td>
+                            </tr>
+                        }else{
+                            @for(statAssignedGroup <- statAssignedGroupList) {
+                                @if(statAssignedGroup(1)=="MALE"){
+                                    <tr>
+                                        <td align="center">
+                                        @statAssignedGroup(0)
+                                        </td>
+                                        <td align="center">
+                                        @statAssignedGroup(1)
+                                        </td>
+                                        <td align="right">
+                                        @statAssignedGroup(2)
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        }
 
                     </table>
                 </td>

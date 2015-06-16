@@ -22,6 +22,6 @@ GET         /getS                             @controllers.Second.getStatus
 
 GET         /getStat                          @controllers.ControllersSample.getStatus()
 
-GET         /stat/getStatAssignedGroup        @controllers.Second.getStatAssignedGroup(dateString: Option[String])
+POST        /stat/getStatAssignedGroup        @controllers.Second.getStatAssignedGroup
 
-POST        /stat/getStatAssignedGroup        @controllers.Second.getStatAssignedGroup(dateString: Option[String])
+GET        /stat/getStatAssignedGroup        @controllers.Second.getStatAssignedGroup
